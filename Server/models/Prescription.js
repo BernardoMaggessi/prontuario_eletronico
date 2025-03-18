@@ -1,20 +1,21 @@
 import mongoose from "mongoose";
 
-const { Schema } = mongoose; // Correção na importação
+const { Schema } = mongoose;
 
 const prescriptionSchema = new Schema({
-    date: { type: mongoose.Schema.Types.ObjectId, default: () => new mongoose.Types.ObjectId(), unique: true },
     prescriptionId: {
-        type: String,
-        required: [true, "Id is required for prescription"], // Correção da mensagem
+        type: mongoose.Schema.Types.ObjectId, // Usa ObjectId ao invés de String
+        default: () => new mongoose.Types.ObjectId(), // Garante um ID único automático
+        unique: true,
     },
     appointmentId: {
-        type: String,
-        required: [true, "AppointmentId is required for prescription"], // Correção na mensagem
+        type: mongoose.Schema.Types.ObjectId, // Relacionamento correto com `Appointment`
+        ref: "Appointment",
+        required: [true, "AppointmentId is required for prescription"],
     },
     medicine: {
         type: String,
-        required: [true, "Medicine is required for prescription"], // Correção na mensagem
+        required: [true, "Medicine is required for prescription"],
     },
     dosage: {
         type: String,
@@ -22,13 +23,13 @@ const prescriptionSchema = new Schema({
     },
     instructions: {
         type: String,
-        required: false, // Correção do `required`
+        required: false, // Explicitamente opcional
     },
     createdAt: {
         type: Date,
-        default: Date.now, // Correção `date.now` para `Date.now`
+        default: Date.now,
     },
 });
 
-const Prescription = mongoose.model("Prescription", prescriptionSchema); // Nome da coleção corrigido
+const Prescription = mongoose.model("Prescription", prescriptionSchema);
 export default Prescription;

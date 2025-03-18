@@ -33,6 +33,12 @@ const doctorSchema = new Schema({
     phone: {
         type: String,
         required: [true, "Phone contact is required"],
+        validate: {
+            validator: function (v){
+                return '/\d{2} 9\d{4}-\d{4}.test(v)';
+            },
+            message: props => `${props.value} this is not a valid phone number. Please use a following format 21 91234-3456`
+        }
     },
     createdAt: {
         type: Date,

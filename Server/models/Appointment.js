@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import Doctor from "./Doctor.js";
 
 const { Schema } = mongoose; // Aqui está a correção!
 
@@ -8,11 +9,19 @@ const appointmentSchema = new Schema({
         required: [true, "Appointment date is required"],
     },
     doctorId: {
-        type: String,
+        type: mongoose.Schema.Types.ObjectId, // Define como ObjectId diretamente
+        ref: "Doctor", // Faz referência ao modelo Doctor
         required: [true, "DoctorId is required"],
+        validate: {
+            validator: async function (v) {
+                return await mongoose.model("Doctor").exists({ _id: v });
+            },
+            message: (props) => `${props.value} Doctor ID is not valid`,
+        },
     },
     patientId: {
-        type: String,
+        type: mongoose.Schema.Types.ObjectId, // Mantém o padrão de ObjectId para relacionamentos
+        ref: "Patient", // Faz referência ao modelo Patient
         required: [true, "PatientId is required"],
     },
     createdAt: {
