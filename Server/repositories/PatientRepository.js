@@ -1,7 +1,7 @@
 import Patient from "../models/Patients.js";
 
 const getAllPatients = async () =>{
-    return await getAllPatients.find();
+    return await Patient.find();
 }
 
 const getPatient = async(id) =>{

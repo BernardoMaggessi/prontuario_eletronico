@@ -1,5 +1,6 @@
 import express from "express";
 import PatientService from '../services/PatientService.js';
+import AppointmentService from "../services/AppointmentService.js";
 
 const router = express.Router();
 
@@ -24,6 +25,20 @@ router.get('/getPatient/:id', async (req, res) => {
     } catch (error) {
         console.error(error);
         res.status(500).json({ message: "Internal Server Error" });
+    }
+});
+
+router.post('/patients',async(req,res) =>{
+    const {name,birthdate,email,phone}= req.body;
+    try{
+        if(!name || !birthdate ||!email){
+            return res.status(400).json({message:"Missing required fields"});
+        }
+        const patient = await PatientService.savePatient({name,birthdate,email,phone});
+        res.status(201).json(patient);
+    }catch(error){
+        console.log(error);
+        res.status(500).json({message:"Internal Server Error"});
     }
 });
 

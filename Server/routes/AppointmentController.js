@@ -70,5 +70,18 @@ router.delete('/appointments/:id', async (req, res) => {
         res.status(500).json({ message: "Internal Server Error" });
     }
 });
+router.put('/reschedule/:id', async (req, res) => {
+    const { id } = req.params;
+    const { date } = req.body;
+    try {
+        let appointment = await AppointmentService.getAppointment(id); // Use let aqui
+        appointment.date = date;
+        appointment = await AppointmentService.updateAppointment(id, { date });
+        res.send(appointment);
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({ message: "Internal Server Error" });
+    }
+});
 
 export default router;
