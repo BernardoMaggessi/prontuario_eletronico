@@ -44,17 +44,11 @@ router.post('/login', async (req, res) => {
 
 
 
-// Prefixando as rotas para os controllers
-/*
 router.use("/", verifyToken,appointmentController);
 router.use("/", verifyToken,doctorController);
 router.use("/", verifyToken,prescriptionController);
 router.use("/", verifyToken,patientController);
-*/
 
-router.use("/",appointmentController);
-router.use("/",doctorController);
-router.use("/",prescriptionController);
-router.use("/",patientController);
+
 // Exportando o router
 export default router;
