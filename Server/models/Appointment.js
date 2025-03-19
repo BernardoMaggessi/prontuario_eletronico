@@ -7,6 +7,12 @@ const appointmentSchema = new Schema({
     date: {
         type: Date,
         required: [true, "Appointment date is required"],
+        validate: {
+            validator: function (v) {
+                return v > new Date();
+            },
+            message: "Appointment date must be in the future",
+        },
     },
     doctorId: {
         type: mongoose.Schema.Types.ObjectId, // Define como ObjectId diretamente
@@ -26,6 +32,12 @@ const appointmentSchema = new Schema({
     },
     history:{
         type:String,
+        required:false
+    },
+    status: {
+        type: String,
+        enum: ["scheduled", "completed", "canceled"],
+        default: "scheduled",
         required:false
     },
     createdAt: {

@@ -38,11 +38,20 @@ const deleteAppointment = async (id) =>{
     }
 }
 
+const getAppointmentsByDoctor = async (doctorId) => {
+    try {
+        return await Appointment.find({ doctorId });
+    } catch (error) {
+        throw new Error(error);
+    }
+}
+
 const AppointmentRepository = {
     getAllAppointment,
     getAppointment,
     saveAppointment,
     updateAppointment,
-    deleteAppointment
+    deleteAppointment,
+    getAppointmentsByDoctor
 }
 export default AppointmentRepository;

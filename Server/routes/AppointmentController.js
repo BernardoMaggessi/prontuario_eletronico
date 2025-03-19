@@ -28,6 +28,20 @@ router.get('/appointments/:id', async (req, res) => {
     }
 });
 
+router.get('/appointmentsByDoctor/:doctorId',async(req,res)=>{
+    const {doctorId} = req.params;
+    try{
+        const appointments = await getAppointmentsByDoctor(doctorId);
+        if(!appointments){
+            return res.status(400).json({message:"Appointments not found"})
+        }
+        res.json(appointments);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: "Internal Server Error" });
+    }
+});
+
 router.post('/appointments', async (req, res) => {
     const { date, doctorId, patientId } = req.body;
     try {
@@ -44,7 +58,7 @@ router.post('/appointments', async (req, res) => {
 
 router.put('/appointments/:id', async (req, res) => {
     const { id } = req.params;
-    const { date, doctorId, patientId } = req.body;
+    const { date, doctorId, patientId, history } = req.body;
     try {
         const updatedAppointment = await AppointmentService.updateAppointment(id, { date, doctorId, patientId, history });
         if (!updatedAppointment) {
@@ -74,14 +88,17 @@ router.put('/reschedule/:id', async (req, res) => {
     const { id } = req.params;
     const { date } = req.body;
     try {
-        let appointment = await AppointmentService.getAppointment(id); // Use let aqui
-        appointment.date = date;
-        appointment = await AppointmentService.updateAppointment(id, { date });
-        res.send(appointment);
+        const appointment = await AppointmentService.getAppointment(id);
+        if (!appointment) {
+            return res.status(404).json({ message: "Appointment not found" });
+        }
+        const updatedAppointment = await AppointmentService.updateAppointment(id, { date });
+        res.json(updatedAppointment);
     } catch (error) {
-        console.log(error);
+        console.error(error);
         res.status(500).json({ message: "Internal Server Error" });
     }
 });
+
 
 export default router;

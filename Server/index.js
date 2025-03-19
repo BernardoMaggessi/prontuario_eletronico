@@ -8,7 +8,6 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-
 // Usando o router que contém as rotas de todos os controllers
 app.use("/", router);
 

@@ -11,7 +11,6 @@ const getDoctor = async(id) =>{
     }
 }
 
-
 const saveDoctor = async ({name,login,password,medicalSpecialty,medicalRegistration,email,phone}) =>{
     try{
         const doctor = new Doctor({name,login,password,medicalSpecialty,medicalRegistration,email,phone});
@@ -34,7 +33,6 @@ const deleteDoctor = async(id) =>{
         throw new Error(error);
     }
 }
-
 const DoctorRepository = {
     getAllDoctors,
     getDoctor,

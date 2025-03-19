@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 const { Schema } = mongoose; // Correção na importação!
 
 const doctorSchema = new Schema({
-    doctorId: { type: mongoose.Schema.Types.ObjectId, default: () => new mongoose.Types.ObjectId(), unique: true },
+    
     name: {
         type: String,
         required: [true, "Doctor name is required"],

@@ -3,11 +3,7 @@ import mongoose from "mongoose";
 const { Schema } = mongoose;
 
 const prescriptionSchema = new Schema({
-    prescriptionId: {
-        type: mongoose.Schema.Types.ObjectId, // Usa ObjectId ao invés de String
-        default: () => new mongoose.Types.ObjectId(), // Garante um ID único automático
-        unique: true,
-    },
+   
     appointmentId: {
         type: mongoose.Schema.Types.ObjectId, // Relacionamento correto com `Appointment`
         ref: "Appointment",
