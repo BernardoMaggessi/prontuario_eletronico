@@ -46,7 +46,7 @@ router.put('/appointments/:id', async (req, res) => {
     const { id } = req.params;
     const { date, doctorId, patientId } = req.body;
     try {
-        const updatedAppointment = await AppointmentService.updateAppointment(id, { date, doctorId, patientId });
+        const updatedAppointment = await AppointmentService.updateAppointment(id, { date, doctorId, patientId, history });
         if (!updatedAppointment) {
             return res.status(404).json({ message: "Appointment not found" });
         }

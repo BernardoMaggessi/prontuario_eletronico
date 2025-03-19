@@ -24,6 +24,10 @@ const appointmentSchema = new Schema({
         ref: "Patient", // Faz referência ao modelo Patient
         required: [true, "PatientId is required"],
     },
+    history:{
+        type:String,
+        required:false
+    },
     createdAt: {
         type: Date,
         default: Date.now,
