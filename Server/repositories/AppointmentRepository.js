@@ -46,12 +46,21 @@ const getAppointmentsByDoctor = async (doctorId) => {
     }
 }
 
+const getAppointmentsByPatient = async (patientId) => {
+    try{
+        return await Appointment.find({patientId});
+    }catch(error){
+        throw new Error(error);
+    }
+}
+
 const AppointmentRepository = {
     getAllAppointment,
     getAppointment,
     saveAppointment,
     updateAppointment,
     deleteAppointment,
-    getAppointmentsByDoctor
+    getAppointmentsByDoctor,
+    getAppointmentsByPatient
 }
 export default AppointmentRepository;

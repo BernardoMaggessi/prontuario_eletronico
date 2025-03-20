@@ -42,6 +42,20 @@ router.get('/appointmentsByDoctor/:doctorId',async(req,res)=>{
     }
 });
 
+router.get('/appointmentsByPatient/:patientId',async(req,res) =>{
+    const {patientId} = req.params;
+    try{
+        const appointments = await getAppointmentsByPatient(patientId);
+        if(!appointments){
+            return res.status(400).json({message:"Appointments not found"})
+        }
+        res.json(appointments);
+    }catch(error){
+        console.error(error);
+        res.status(500).json({message:"Internal Server Error"});
+    }
+});
+
 router.post('/appointments', async (req, res) => {
     const { date, doctorId, patientId } = req.body;
     try {

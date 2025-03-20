@@ -18,13 +18,16 @@ const deleteAppointment = async(id) =>{
 const getAppointmentsByDoctor = async(doctorId) =>{
     return AppointmentRepository.getAppointmentsByDoctor(doctorId);
 }
-
+const getAppointmentsByPatient = async(patientId) =>{
+    return AppointmentRepository.getAppointmentsByPatient(patientId);
+}
 const AppointmentService = {
     getAllAppointment,
     getAppointment,
     saveAppointment,
     updateAppointment,
     deleteAppointment,
-    getAppointmentsByDoctor
+    getAppointmentsByDoctor,
+    getAppointmentsByPatient
 }
 export default AppointmentService;

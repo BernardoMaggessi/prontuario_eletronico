@@ -42,12 +42,10 @@ router.post('/login', async (req, res) => {
     }
 });
 
-
-
-router.use("/", verifyToken,appointmentController);
-router.use("/", verifyToken,doctorController);
-router.use("/", verifyToken,prescriptionController);
-router.use("/", verifyToken,patientController);
+router.use("/",verifyToken,appointmentController);
+router.use("/",verifyToken,doctorController);
+router.use("/",verifyToken,prescriptionController);
+router.use("/",verifyToken,patientController);
 
 
 // Exportando o router
