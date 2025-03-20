@@ -25,6 +25,9 @@ const prescriptionSchema = new Schema({
         type: Date,
         default: Date.now,
     },
+    file:{
+        
+    }
 });
 
 const Prescription = mongoose.model("Prescription", prescriptionSchema);

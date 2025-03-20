@@ -12,18 +12,18 @@ const getPrescription = async(id) =>{
     }
 }
 
-const savePrescription = async({date,appointmentId,medicine,dosage,instructions})=>{
+const savePrescription = async({date,appointmentId,medicine,dosage,instructions,file})=>{
     try{
-        const prescription = new Prescription({date,appointmentId,medicine,dosage,instructions});
+        const prescription = new Prescription({date,appointmentId,medicine,dosage,instructions,file});
         return await prescription.save();
     }catch(error){
         throw new Error(error);
     }
 }
 
-const updatePrescription = async(id, {date,appointmentId,medicine,dosage,instructions}) =>{
+const updatePrescription = async(id, {date,appointmentId,medicine,dosage,instructions,file}) =>{
     try{
-        return await Prescription.findByIdAndUpdate(id,{date,appointmentId,medicine,dosage,instructions});
+        return await Prescription.findByIdAndUpdate(id,{date,appointmentId,medicine,dosage,instructions,file});
     }catch(error){
         throw new Error(error);
     }
