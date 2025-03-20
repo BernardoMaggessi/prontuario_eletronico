@@ -61,6 +61,6 @@ const AppointmentRepository = {
     updateAppointment,
     deleteAppointment,
     getAppointmentsByDoctor,
-    getAppointmentsByPatient
+    getAppointmentsByPatient,
 }
 export default AppointmentRepository;

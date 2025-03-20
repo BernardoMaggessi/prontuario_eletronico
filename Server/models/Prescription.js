@@ -5,7 +5,7 @@ const { Schema } = mongoose;
 const prescriptionSchema = new Schema({
    
     appointmentId: {
-        type: mongoose.Schema.Types.ObjectId, // Relacionamento correto com `Appointment`
+        type: mongoose.Schema.Types.ObjectId, 
         ref: "Appointment",
         required: [true, "AppointmentId is required for prescription"],
     },
@@ -19,7 +19,7 @@ const prescriptionSchema = new Schema({
     },
     instructions: {
         type: String,
-        required: false, // Explicitamente opcional
+        required: false,
     },
     createdAt: {
         type: Date,

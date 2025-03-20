@@ -15,8 +15,8 @@ const appointmentSchema = new Schema({
         },
     },
     doctorId: {
-        type: mongoose.Schema.Types.ObjectId, // Define como ObjectId diretamente
-        ref: "Doctor", // Faz referência ao modelo Doctor
+        type: mongoose.Schema.Types.ObjectId, 
+        ref: "Doctor", 
         required: [true, "DoctorId is required"],
         validate: {
             validator: async function (v) {
@@ -26,8 +26,8 @@ const appointmentSchema = new Schema({
         },
     },
     patientId: {
-        type: mongoose.Schema.Types.ObjectId, // Mantém o padrão de ObjectId para relacionamentos
-        ref: "Patient", // Faz referência ao modelo Patient
+        type: mongoose.Schema.Types.ObjectId, 
+        ref: "Patient", 
         required: [true, "PatientId is required"],
     },
     history:{
